@@ -1,0 +1,28 @@
+ControlSist/
+├── assets/
+│   ├── css/
+│   │   └── style.css
+│   ├── js/
+│   │   └── script.js
+│   └── images/
+├── config/
+│   └── database.php
+├── includes/
+│   ├── header.php
+│   ├── footer.php
+│   ├── sidebar.php
+│   └── auth.php
+├── pages/
+│   ├── dashboard.php
+│   ├── fornecedores.php
+│   ├── produtos.php
+│   ├── entradas.php
+│   ├── saidas.php
+│   ├── categorias.php
+│   ├── usuarios.php
+│   ├── relatorios.php
+│   └── login.php
+├── sql/
+│   └── banco.sql
+├── index.php
+└── manual.txt

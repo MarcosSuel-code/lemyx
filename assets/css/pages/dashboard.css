@@ -1,0 +1,93 @@
+/* ==================================================
+   DASHBOARD – KPI CARDS
+================================================== */
+
+.kpi-card {
+    background-color: var(--kpi-bg);
+    color: var(--kpi-text);
+    border-radius: 18px;
+    padding: 22px 24px;
+    position: relative;
+    overflow: hidden;
+    min-height: 110px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.kpi-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.12);
+}
+
+/* Glow decorativo */
+.kpi-card::after {
+    content: '';
+    position: absolute;
+    right: -32px;
+    top: -32px;
+    width: 130px;
+    height: 130px;
+    background: var(--kpi-glow);
+    border-radius: 50%;
+    opacity: .55;
+}
+
+/* Ícone */
+.kpi-icon {
+    font-size: 26px;
+    opacity: 0.85;
+}
+
+/* Valor principal */
+.kpi-value {
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+}
+
+/* Label */
+.kpi-label {
+    font-size: 0.85rem;
+    color: var(--kpi-muted);
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+}
+
+/* ==================================================
+   KPI – VARIAÇÕES SEMÂNTICAS
+================================================== */
+
+.kpi-success {
+    --kpi-bg: linear-gradient(135deg, #1e7e34, #28a745);
+    --kpi-text: #fff;
+    --kpi-muted: rgba(255, 255, 255, .75);
+    --kpi-glow: rgba(40, 167, 69, .35);
+}
+
+.kpi-warning {
+    --kpi-bg: linear-gradient(135deg, #d39e00, #ffc107);
+    --kpi-text: #212529;
+    --kpi-muted: rgba(0, 0, 0, .6);
+    --kpi-glow: rgba(255, 193, 7, .45);
+}
+
+.kpi-danger {
+    --kpi-bg: linear-gradient(135deg, #bd2130, #dc3545);
+    --kpi-text: #fff;
+    --kpi-muted: rgba(255, 255, 255, .75);
+    --kpi-glow: rgba(220, 53, 69, .4);
+}
+
+.kpi-info {
+    --kpi-bg: linear-gradient(135deg, #117a8b, #17a2b8);
+    --kpi-text: #fff;
+    --kpi-muted: rgba(255, 255, 255, .75);
+    --kpi-glow: rgba(23, 162, 184, .4);
+}

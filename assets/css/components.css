@@ -1,0 +1,316 @@
+/* ==================================================
+   COMPONENTES – BASE
+   Superfícies principais do sistema
+================================================== */
+
+/* Cards e modais compartilham a mesma superfície visual */
+.card,
+.modal-content {
+    background-color: var(--card-bg);          /* Fundo controlado por token */
+    color: var(--card-text);                   /* Texto consistente light/dark */
+    border-radius: 16px;                       /* Identidade visual */
+    border: none;                              /* Remove borda Bootstrap */
+    box-shadow: var(--shadow-soft);            /* Profundidade sutil */
+}
+
+/* ==================================================
+   SEARCH
+   Campo de busca com sugestões
+================================================== */
+
+.search-container {
+    position: relative;                        /* Âncora do dropdown */
+    max-width: 360px;
+    margin-right: 1rem;
+}
+
+/* Input principal */
+.search-container input {
+    width: 100%;
+    padding: 8px 14px;
+    font-size: 0.95rem;
+    border-radius: 10px;
+    border: 1px solid var(--border-soft);
+    background-color: var(--card-bg);
+    color: var(--text-body);
+    transition: border-color .2s ease,
+                box-shadow .2s ease;
+}
+
+/* Estado de foco acessível */
+.search-container input:focus {
+    border-color: var(--sidebar-hover);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, .25);
+}
+
+/* Lista de sugestões */
+.search-container ul {
+    position: absolute;
+    inset-inline: 0;
+    max-height: 180px;
+    overflow-y: auto;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-soft);
+    border-radius: 0 0 10px 10px;
+    z-index: 1050;                              /* Acima de cards */
+}
+
+.search-container li {
+    padding: 10px 14px;
+    cursor: pointer;
+}
+
+/* Hover claro e consistente */
+.search-container li:hover {
+    background-color: var(--sidebar-hover);
+    color: #fff;
+}
+
+/* ==================================================
+   TABS
+   Rolagem horizontal reversa
+================================================== */
+
+.tab-wrapper {
+    max-width: 70%;
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    flex-direction: row-reverse;                /* Tabs à direita */
+}
+
+.tab-wrapper .nav-tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row-reverse;
+}
+
+/* ==================================================
+   TABELAS – SISTEMA UNIFICADO
+   Bootstrap + Zebra + Hover + Seleção
+================================================== */
+
+/* 🔒 Neutraliza backgrounds internos do Bootstrap */
+.table > :not(caption) > * > * {
+    background-color: transparent;
+}
+
+/* Estrutura base da tabela */
+.table {
+    width: 100%;
+    background-color: var(--table-bg);
+    color: var(--table-text);
+    border-color: var(--table-border);
+    border-radius: 12px;
+    overflow: hidden;                          /* Evita vazamento do thead */
+}
+
+/* Células */
+.table th,
+.table td {
+    padding: .75rem;
+    color: inherit;
+    border-color: var(--table-border);
+}
+
+/* --------------------------
+   Cabeçalho (thead)
+-------------------------- */
+
+.table thead th {
+    background-color: var(--table-head-bg);
+    color: var(--table-head-text);
+    font-weight: 600;
+    font-size: .9rem;
+    letter-spacing: .02em;
+    border-bottom: 1px solid var(--table-border);
+}
+
+/* Suporte a cabeçalho fixo */
+.table thead th.sticky-top {
+    background-color: var(--table-head-bg);
+    z-index: 10;
+}
+
+/* --------------------------
+   Corpo (tbody)
+-------------------------- */
+
+/* Linha base */
+.table tbody tr {
+    background-color: var(--table-row-bg);
+    transition: background-color .15s ease;
+}
+
+/* Hover aplicado nos TDs (corrige zebra escura) */
+.table tbody tr:hover > td {
+    background-color: var(--table-row-hover) !important;
+}
+
+/* Linha selecionada (estado persistente) */
+.table tbody tr.selecionada > td {
+    background-color: rgba(37, 99, 235, 0.18) !important;
+}
+
+/* Selecionada + hover (feedback forte) */
+.table tbody tr.selecionada:hover > td {
+    background-color: rgba(37, 99, 235, 0.28) !important;
+}
+
+/* --------------------------
+   Zebra striping
+-------------------------- */
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: var(--bs-table-striped-bg);
+}
+
+/* --------------------------
+   Bordas e responsividade
+-------------------------- */
+
+.table-bordered {
+    border-color: var(--table-border);
+}
+
+.table-responsive {
+    background-color: var(--table-bg);
+}
+
+/* --------------------------
+   Blindagem Dark Mode
+   Impede bg-light / bg-* do Bootstrap
+-------------------------- */
+
+body.dark-mode .table thead.bg-light,
+body.dark-mode .table thead th.bg-light,
+body.dark-mode .table [class^="bg-"],
+body.dark-mode .table [class*=" bg-"] {
+    background-color: var(--table-head-bg) !important;
+    color: var(--table-head-text) !important;
+}
+
+/* ==================================================
+   DATATABLES
+   Integração visual total
+================================================== */
+
+table.dataTable {
+    background-color: var(--dt-bg);
+    color: var(--dt-text);
+    border-color: var(--dt-border);
+}
+
+table.dataTable thead th {
+    background-color: var(--dt-head-bg);
+    color: var(--table-head-text);
+    border-bottom: 1px solid var(--dt-border);
+}
+
+table.dataTable tbody tr:hover {
+    background-color: var(--dt-hover);
+}
+
+/* ==================================================
+   TABELAS — AJUSTES DARK MODE
+================================================== */
+
+body.dark-mode .table tbody tr:hover > td {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+body.dark-mode .table tbody tr.selecionada > td {
+    background-color: rgba(88, 166, 255, 0.25) !important;
+}
+
+body.dark-mode .table tbody tr.selecionada:hover > td {
+    background-color: rgba(88, 166, 255, 0.35) !important;
+}
+
+/* ==================================================
+   FORM CONTROLS — DARK MODE
+================================================== */
+
+body.dark-mode .form-control,
+body.dark-mode .form-select {
+    background-color: #1c1f26;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, .15);
+}
+
+body.dark-mode .form-control::placeholder {
+    color: rgba(255, 255, 255, .45);
+}
+
+body.dark-mode .form-control:focus,
+body.dark-mode .form-select:focus {
+    border-color: var(--sidebar-hover);
+    box-shadow: 0 0 0 3px rgba(96, 165, 250, .25);
+}
+
+/* ==================================================
+   BOTÕES
+================================================== */
+
+.btn-primary {
+    background-color: var(--sidebar-hover);
+    color: #fff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid var(--sidebar-hover);
+    color: var(--sidebar-hover);
+    padding: 6px 12px;
+    border-radius: 8px;
+}
+
+/* ==================================================
+   PRODUÇÃO – LISTAGEM
+================================================== */
+
+.producao-lista-wrapper {
+    padding: 24px;
+    background-color: var(--bg-body);
+}
+
+.producao-lista .lista-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+/* ==================================================
+   STATUS (BADGES)
+================================================== */
+
+.status {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: .75rem;
+    font-weight: 600;
+    letter-spacing: .3px;
+}
+
+/* Estados semânticos */
+.status.PENDENTE {
+    background-color: rgba(245, 158, 11, .15);
+    color: #f59f0b;
+}
+
+.status.CONCLUIDO {
+    background-color: rgba(34, 197, 94, .15);
+    color: #22c55e;
+}
+
+.status.CANCELADO {
+    background-color: rgba(239, 68, 68, .15);
+    color: #ef4444;
+}

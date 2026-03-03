@@ -1,0 +1,25 @@
+ControlSist/
+├── assets/            → Arquivos de CSS, JS, imagens
+│   ├── css/
+│   ├── js/
+│   └── img/
+├── backup/            → Pasta onde ficam os backups gerados
+├── config/            → Arquivo de conexão com o banco
+│   └── database.php
+├── pages/             → Páginas internas do sistema
+│   ├── dashboard.php
+│   ├── login.php
+│   ├── fornecedores/
+│   ├── produtos/
+│   ├── categorias/
+│   ├── entradas/
+│   ├── saidas/
+│   ├── relatorios/
+│   ├── graficos/
+│   ├── usuarios/
+│   └── backup.php
+├── sql_banco.sql      → Banco de dados
+├── index.php          → Tela de login
+├── logout.php         → Logout do sistema
+├── manual.pdf         → Manual de utilização
+└── README.txt         → Informações rápidas

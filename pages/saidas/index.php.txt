@@ -1,0 +1,84 @@
+<?php
+session_start();
+if (!isset($_SESSION['usuario'])) {
+    header("Location: ../../index.php");
+    exit();
+}
+require_once '../../config/database.php';
+
+// Inserir saída
+if (isset($_POST['produto_id'])) {
+    // Verificar estoque disponível
+    $stmt = $pdo->prepare("SELECT estoque FROM produtos WHERE id = ?");
+    $stmt->execute([$_POST['produto_id']]);
+    $produto = $stmt->fetch();
+
+    if ($produto && $produto['estoque'] >= $_POST['quantidade']) {
+        // Registrar saída
+        $sql = "INSERT INTO saidas (produto_id, quantidade, tipo_saida, data) VALUES (?, ?, ?, NOW())";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([
+            $_POST['produto_id'],
+            $_POST['quantidade'],
+            $_POST['tipo_saida']
+        ]);
+
+        // Atualizar estoque
+        $pdo->prepare("UPDATE produtos SET estoque = estoque - ? WHERE id = ?")
+            ->execute([$_POST['quantidade'], $_POST['produto_id']]);
+
+        header("Location: index.php");
+        exit();
+    } else {
+        $erro = "Estoque insuficiente!";
+    }
+}
+
+// Listar produtos e saídas
+$produtos = $pdo->query("SELECT * FROM produtos")->fetchAll();
+$saidas = $pdo->query("
+    SELECT s.*, p.nome 
+    FROM saidas s 
+    JOIN produtos p ON s.produto_id = p.id
+    ORDER BY s.data DESC
+")->fetchAll();
+?>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Saídas - ControlSist</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+    <h1>Saída de Mercadorias</h1>
+
+    <?php if (isset($erro)): ?>
+        <p style="color: red;"><?= $erro ?></p>
+    <?php endif; ?>
+
+    <form method="POST">
+        <select name="produto_id" required>
+            <option value="">Selecione o produto</option>
+            <?php foreach ($produtos as $p): ?>
+                <option value="<?= $p['id'] ?>"><?= $p['nome'] ?></option>
+            <?php endforeach; ?>
+        </select>
+        <input type="number" name="quantidade" placeholder="Quantidade" required>
+        <select name="tipo_saida" required>
+            <option value="">Tipo de Saída</option>
+            <option value="Venda">Venda</option>
+            <option value="Perda">Perda</option>
+            <option value="Devolução">Devolução</option>
+            <option value="Outro">Outro</option>
+        </select>
+        <button type="submit">Registrar Saída</button>
+    </form>
+
+    <h2>Histórico de Saídas</h2>
+    <table border="1">
+        <tr>
+            <th>Produto</th>
+            <th>Quantidade</th>
+            <th>Tipo de Saída</th>
