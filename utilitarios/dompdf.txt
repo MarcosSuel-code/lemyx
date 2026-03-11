@@ -1,0 +1,5 @@
+✅ Para isso funcionar, no PDF você precisa instalar o Dompdf:
+
+Via terminal (onde está seu projeto PHP):
+bash
+composer require dompdf/dompdf

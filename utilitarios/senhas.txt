@@ -1,0 +1,10 @@
+✅ Acesso Inicial ao Sistema:
+Usuário Admin:
+➤ Login: admin
+➤ Senha: admin123
+
+Usuário Padrão:
+➤ Login: usuario
+➤ Senha: usuario123
+
+⚠️ As senhas estão armazenadas com hash SHA-256 no banco, portanto são seguras.

@@ -1,0 +1,6 @@
+/assets/css
+ ├── base.css        → variáveis, reset, tipografia, modos
+ ├── layout.css      → sidebar, navbar, estrutura geral
+ ├── components.css  → cards, tabelas, modais, tabs, search
+ ├── utilities.css   → helpers (font-size, estados, visibilidade)
+ └── global.css      → arquivo agregador (importa todos)
