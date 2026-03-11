@@ -1,8 +1,8 @@
 <?php
-$host = '127.0.0.1';
-$db   = 'lemyx_db';
-$user = 'root';
-$pass = '';
+$host = 'sql213.infinityfree.com';
+$db   = 'if0_41325543_lemyx_db';
+$user = 'if0_41325543';
+$pass = 'sl5uQicSn7i';
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
